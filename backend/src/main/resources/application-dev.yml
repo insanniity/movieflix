@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/movieflix
+    username: postgres
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    hibernate:
+      ddl-auto: none
+security:
+  oauth2:
+    client:
+      cliente-id: movieflix
+      client-secret: movieflix123
+jwt:
+  secret: MY-JWT-SECRET
+  duration: 86400
