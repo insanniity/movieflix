@@ -1,8 +1,6 @@
 package com.devsuperior.movieflix.dto;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -21,7 +19,7 @@ public class UserDTO implements Serializable{
 	@Email(message= "Favor digitar um email válido")
 	private String email;
 	
-	Set<RoleDTO> roles = new HashSet<>();
+	//Set<RoleDTO> roles = new HashSet<>();
 	
 	public UserDTO() {
 		
@@ -38,7 +36,7 @@ public class UserDTO implements Serializable{
 		id = entity.getId();
 		name = entity.getName();		
 		email = entity.getEmail();
-		entity.getRoles().forEach(role -> this.roles.add(new RoleDTO(role)));
+		//entity.getRoles().forEach(role -> this.roles.add(new RoleDTO(role)));
 	}
 
 	public Long getId() {
@@ -66,9 +64,9 @@ public class UserDTO implements Serializable{
 		this.email = email;
 	}
 
-	public Set<RoleDTO> getRoles() {
-		return roles;
-	}
+	//public Set<RoleDTO> getRoles() {
+	//	return roles;
+	//}
 	
 	
 	
