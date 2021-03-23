@@ -33,8 +33,9 @@ public class MovieService implements Serializable{
 	private GenreRepository genreRepository;	
 	
 	@Transactional(readOnly = true)
-	public Page<MovieDTO> findAllPaged(PageRequest pageRequest){
-		Page<Movie> list = repository.findAll(pageRequest);		
+	public Page<MovieDTO> findAllPaged(PageRequest pageRequest, Long genreId){
+		Genre genre = (genreId == 0) ? null : genreRepository.getOne(genreId);
+		Page<Movie> list = repository.find(genre, pageRequest);		
 		return list.map(x -> new MovieDTO(x));		
 		
 	}
@@ -42,8 +43,8 @@ public class MovieService implements Serializable{
 	@Transactional(readOnly = true)
 	public MovieDTO findById(Long id) {		
 		Optional<Movie> obj = repository.findById(id);
-		Movie entity = obj.orElseThrow(() -> new ResourceNotFoundException("Categoria não encontrada"));
-		return new MovieDTO(entity);
+		Movie movie  = obj.orElseThrow(() -> new ResourceNotFoundException("Movie not Found"));
+		return new MovieDTO(movie, movie.getReviews());
 		
 	}
 	
@@ -85,7 +86,7 @@ public class MovieService implements Serializable{
 		entity.setYear(dto.getYear());
 		entity.setImgUrl(dto.getImgUrl());
 		entity.setSynopsis(dto.getSynopsis());
-		Genre genre = genreRepository.getOne(dto.getGenre().getId());
+		Genre genre = genreRepository.getOne(dto.getGenreId());
 		entity.setGenre(genre);
 		
 	}
