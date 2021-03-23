@@ -10,11 +10,15 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.devsuperior.movieflix.dto.ReviewDTO;
+import com.devsuperior.movieflix.entities.Movie;
 import com.devsuperior.movieflix.entities.Review;
+import com.devsuperior.movieflix.entities.User;
 import com.devsuperior.movieflix.repositories.MovieRepository;
 import com.devsuperior.movieflix.repositories.ReviewRepository;
 import com.devsuperior.movieflix.repositories.UserRepository;
@@ -33,8 +37,10 @@ public class ReviewService implements Serializable{
 	private UserRepository userRepository;
 	
 	@Autowired
-	private MovieRepository movieRepository;	
+	private MovieRepository movieRepository;		
 	
+	@Autowired
+	private AuthService authService;
 	
 	@Transactional(readOnly = true)
 	public Page<ReviewDTO> findAllPaged(PageRequest pageRequest){
@@ -53,11 +59,12 @@ public class ReviewService implements Serializable{
 	
 	@Transactional
 	public ReviewDTO insert(ReviewDTO dto) {
-		Review entity = new Review();
-		copyDtoToEntity(dto, entity);		
-		entity = repository.save(entity);
-		return new ReviewDTO(entity);
-		
+		Movie movie = movieRepository.getOne(dto.getMovieId());
+		User user = authService.authenticated();
+		authService.validateMember();		
+		Review review = new Review(null, dto.getText(), movie, user);
+		review = repository.save(review);
+		return new ReviewDTO(review);
 	}
 	
 	@Transactional
@@ -74,7 +81,7 @@ public class ReviewService implements Serializable{
 	
 
 	private void copyDtoToEntity(ReviewDTO dto, Review entity) {
-		entity.setMovie(movieRepository.getOne(dto.getMovie().getId()));
+		entity.setMovie(movieRepository.getOne(dto.getMovieId()));
 		entity.setText(dto.getText());
 		entity.setUser(userRepository.getOne(dto.getUser().getId()));
 	}
