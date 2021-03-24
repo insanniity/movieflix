@@ -20,7 +20,6 @@ import com.devsuperior.movieflix.dto.UserDTO;
 import com.devsuperior.movieflix.dto.UserInsertDTO;
 import com.devsuperior.movieflix.dto.UserUpdateDTO;
 import com.devsuperior.movieflix.entities.User;
-import com.devsuperior.movieflix.repositories.RoleRepository;
 import com.devsuperior.movieflix.repositories.UserRepository;
 import com.devsuperior.movieflix.services.exceptions.DataBaseException;
 import com.devsuperior.movieflix.services.exceptions.ResourceNotFoundException;
@@ -35,8 +34,8 @@ public class UserService implements UserDetailsService{
 	@Autowired
 	private UserRepository repository;	
 	
-	@Autowired
-	private RoleRepository roleRepository;
+//	@Autowired
+//	private RoleRepository roleRepository;
 	
 	@Transactional(readOnly = true)
 	public Page<UserDTO> findAllPaged(PageRequest pageRequest){
