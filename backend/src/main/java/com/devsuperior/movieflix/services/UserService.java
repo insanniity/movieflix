@@ -16,11 +16,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.devsuperior.movieflix.dto.RoleDTO;
 import com.devsuperior.movieflix.dto.UserDTO;
 import com.devsuperior.movieflix.dto.UserInsertDTO;
 import com.devsuperior.movieflix.dto.UserUpdateDTO;
-import com.devsuperior.movieflix.entities.Role;
 import com.devsuperior.movieflix.entities.User;
 import com.devsuperior.movieflix.repositories.RoleRepository;
 import com.devsuperior.movieflix.repositories.UserRepository;
@@ -81,12 +79,11 @@ public class UserService implements UserDetailsService{
 	private void copyDtoToEntity(UserDTO dto, User entity) {
 		entity.setName(dto.getName());		
 		entity.setEmail(dto.getEmail());
-		
-		entity.getRoles().clear();
-		for (RoleDTO roleDto : dto.getRoles()) {
-			Role role = roleRepository.getOne(roleDto.getId());
-			entity.getRoles().add(role);
-		}
+//		entity.getRoles().clear();
+//		for (RoleDTO roleDto : dto.getRoles()) {
+//			Role role = roleRepository.getOne(roleDto.getId());
+//			entity.getRoles().add(role);
+//		}
 		
 	}
 
