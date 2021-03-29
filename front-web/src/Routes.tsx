@@ -1,5 +1,6 @@
 import { BrowserRouter, Switch , Route} from 'react-router-dom';
 import NavBar from './core/components/navbar';
+import PrivateRoute from './core/components/privateroute';
 import Catalog from './pages/Catalog';
 import Login from './pages/Login';
 import Movie from './pages/Movie';
@@ -13,12 +14,12 @@ const Routes = () => {
                     <Route path="/" exact>
                         <Login />
                     </Route>
-                    <Route path="/catalog">
+                    <PrivateRoute path="/catalog">
                         <Catalog />
-                    </Route>
-                    <Route path="/movie">
+                    </PrivateRoute>
+                    <PrivateRoute path="/movie">
                         <Movie />
-                    </Route>
+                    </PrivateRoute>
                 </Switch>
             </div>
         </BrowserRouter>

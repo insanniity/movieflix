@@ -2,16 +2,37 @@ import './styles.scss';
 import {ReactComponent as LoginImg} from '../../core/assets/images/login.svg'
 import {ReactComponent as ArrowIcon } from '../../core/assets/images/arrow.svg';
 import { useForm } from "react-hook-form";
+import { makeLogin } from '../../core/utils/request';
+import { useState } from 'react';
+import { saveSessionData } from '../../core/utils/auth';
+import { useHistory, useLocation } from 'react-router-dom';
 
 type FormData ={
-    email:string;
+    username: string;
     password: string;
 }
 
+type LocationState = {
+    from: string;
+}
+
 const Login = () => {
-    const { register, handleSubmit } = useForm<FormData>();
+    const { register, handleSubmit, errors } = useForm<FormData>();
+    const [hasError, setHasError] = useState(false);
+    const history = useHistory();
+    const location = useLocation<LocationState>();   
+    const { from } = location.state || { from: { pathname: "/catalog" } };
+
+    
+
     const onSubmit = (data : FormData) => {
-        console.log(data);
+        makeLogin(data)
+        .then(response=>{
+            setHasError(false);
+            saveSessionData(response.data);
+            history.push(from);
+        })
+        .catch(() => {setHasError(true)});
     };
 
     return (
@@ -25,6 +46,11 @@ const Login = () => {
                 <div className="card card-login bg-secondary bd-radius-20">
                     <div className="card-body">
                         <h1 className="card-title login-form-title text-center">LOGIN</h1>
+                        {hasError && (
+                            <div className="alert alert-danger" role="alert">
+                                Usuário ou senha inválido.
+                            </div>                
+                        )}
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-group">                                
                                 <input 
@@ -38,10 +64,20 @@ const Login = () => {
                                             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                                             message: "Email inválido"
                                         }})}
-                                    />                                
+                                />
+                                {errors.username && (
+                                    <div className="invalid-feedback d-block">
+                                        {errors.username.message}
+                                    </div>
+                                )}                                
                             </div>
                             <div className="form-group">                                
                                 <input placeholder="Senha" type="password" className="form-control" name="password" ref={register({required: "Campo obrigatório"})}/>
+                                {errors.password && (
+                                    <div className="invalid-feedback d-block">
+                                        {errors.password.message}
+                                    </div>
+                                )}
                             </div> 
                             <div className="col-lg-12 text-center">
                                 <div className="default-btn">
