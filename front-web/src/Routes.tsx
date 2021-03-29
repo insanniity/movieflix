@@ -8,7 +8,7 @@ const Routes = () => {
     return (
         <BrowserRouter>
             <NavBar />
-            <div className="container content">
+            <div className="container-fluid content">
                 <Switch>
                     <Route path="/" exact>
                         <Login />

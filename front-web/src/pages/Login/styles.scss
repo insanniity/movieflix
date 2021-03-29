@@ -1,0 +1,72 @@
+.login-title{
+    font-weight: bold;
+    font-size: 55px;
+    line-height: 75px;
+    letter-spacing: -0.015em;
+    margin-top: 35px;
+}
+
+.login-subtitle{
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 33px;
+    letter-spacing: -0.015em;
+    color: #F2F2F2;
+    margin-top: 20px;
+}
+
+.login-img{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.login-form-title{
+    margin-bottom: 55px;
+    font-size: 48px;
+    line-height: 65px;
+    text-align: center;
+    letter-spacing: -0.015em;
+}
+
+.card-login{
+    padding: 100px 45px;
+
+    input{
+        background: #FEFEFE;
+        border: 1px solid #FEFEFE;
+        box-sizing: border-box;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        height: 50px;
+    }
+    
+    .default-btn{
+        margin-top: 80px;
+        display: flex;
+    }
+
+
+    .btn-icon{
+        height: 70px;
+        width: 380px;
+        border-radius: 10px 0 0 10px;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 33px;  
+        text-align: center;
+        letter-spacing: -0.015em;
+    }
+    
+    .btn-icon-content{
+        width: 70px;
+        background:#927c1d;
+        border-radius: 0px 10px 10px 0px;
+        align-items: center;
+        justify-content: center;
+        color:#FFF;
+    }    
+    
+
+}
+
