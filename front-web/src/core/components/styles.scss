@@ -1,5 +1,5 @@
 .navbar{
-    padding: 15px 40px;
+    padding: 10px 40px;
 }
 
 .navbar-brand{
@@ -14,4 +14,56 @@
     box-sizing: border-box;
     border-radius: 10px;  
     line-height: 16px;  
+}
+
+.pagination-container{
+    display: flex;
+    justify-content: center;    
+    //border: 1px solid #000;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.pagination-item{
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    background-color: #6C6C6C;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;   
+    letter-spacing: -0.015em;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &.active{
+        background: #FFC700;
+    }
+}
+
+.pagination-previous{
+    transform: rotate(-180deg);
+    margin-right: 25px;
+    color: #6C6C6C;
+    cursor: pointer;
+}
+
+.pagination-next{   
+    margin-left: 15px;
+    color: #6C6C6C;
+    cursor: pointer;    
+}
+
+.page-active{
+    color: #FFC700;
+}
+
+.page-inactive{
+    // display: none;
+    pointer-events: none;
 }

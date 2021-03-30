@@ -43,7 +43,7 @@ const Login = () => {
                 <LoginImg className="login-img img-fluid" />
             </div>
             <div className="col-lg-4 col-sm-12">
-                <div className="card card-login bg-secondary bd-radius-20">
+                <div className="card card-login bg-secondary bd-radius-20 box-shadow">
                     <div className="card-body">
                         <h1 className="card-title login-form-title text-center">LOGIN</h1>
                         {hasError && (

@@ -1,0 +1,39 @@
+.movie-card{
+    margin-bottom: 30px; 
+
+    .movie-img{
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .card-title{
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 27px;
+        letter-spacing: -0.015em;
+        margin-top: 10px;
+        margin-bottom: 0;      
+    }
+
+    .movie-card-text{
+        margin-left: 10px;
+    }
+
+    .card-year{
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 22px;
+        letter-spacing: -0.015em;
+        margin-bottom: 0;
+    }
+
+    .card-description{
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 19px;
+        letter-spacing: -0.015em;
+        margin-bottom: 0;
+    }
+
+}
+
