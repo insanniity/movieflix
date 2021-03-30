@@ -33,7 +33,7 @@ const Catalog = () => {
     }, [getMovies] );
 
     const handleChangeGenre = (genre: Genre) => {
-        setActivePage(0);
+        setActivePage(1);
         setGenre(genre);        
     }
     

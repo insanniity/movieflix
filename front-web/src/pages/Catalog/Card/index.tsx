@@ -1,15 +1,20 @@
 import "./styles.scss";
-import {ReactComponent as MovieImg} from '../../../core/assets/images/movie-img.svg'
+import { Movie } from "../../../core/types";
 
-const Card = () => {
+type Props ={
+    movie : Movie;
+}
+
+
+const Card = ({ movie }: Props) => {
     return (       
             <div className="card bd-radius-10 movie-card bg-secondary box-shadow">
                 <div className="card-body px-0">
-                    <MovieImg className="img-fluid movie-img"/>
+                    <img src={movie.imgUrl} alt={movie.title} className="img-fluid movie-img" />                    
                     <div className="movie-card-text">
-                        <h5 className="card-title">O Retorno do Rei</h5>
-                        <h6 className="card-year text-primary">2013</h6>
-                        <p className="card-description">O olho do inimigo está se movendo.</p> 
+                        <h5 className="card-title">{movie.title.substring(0, 24)}</h5>
+                        <h6 className="card-year text-primary">{movie.year}</h6>
+                        <p className="card-description">{movie.subTitle ? movie.subTitle.substring(0, 41) : (<br />)}</p> 
                     </div>
                 </div>
             </div>       
