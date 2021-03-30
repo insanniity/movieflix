@@ -18,9 +18,8 @@ const SearchBar = ({genre , handleChangeGenre }:Props) => {
         makePrivateRequest({ url: '/genres'})
         .then(response => setGenres(response.data))
         .finally(() => setIsLoadingGenres(false));
-    },[]);   
+    },[]);       
     
-    console.log(genres);
 
     return (
         <div className="card bg-secondary bd-radius-10 box-shadow">

@@ -1,28 +1,30 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Pagination from '../../core/components/pagination'
+//import Pagination from '../../core/components/pagination'
 import { Genre, MoviesResponse } from '../../core/types';
 import { makePrivateRequest } from '../../core/utils/request';
 import Card from './Card'
 import SearchBar from './SearchBar';
 import './styles.scss'
+import Pagination from "react-js-pagination";
+
 
 const Catalog = () => {
-    const [moviesResponse, setMoviesReponse] = useState<MoviesResponse>();
-    const [activePage, setActivePage] = useState(0);
+    const [moviesResponse, setMoviesResponse] = useState<MoviesResponse>();
+    const [activePage, setActivePage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);   
     const [genre, setGenre] = useState<Genre>();
-
+    
 
     const getMovies = useCallback(() => {
         const params ={
-            page:activePage,
+            page: activePage-1,
             linesPerPage: 12,
             genreId: genre?.id,
         }
         setIsLoading(true);
         makePrivateRequest({url:'/movies', params})        
-        .then(response => setMoviesReponse(response.data))
+        .then(response => setMoviesResponse(response.data))
         .finally(()=> {setIsLoading(false)});
     }, [activePage, genre]);
 
@@ -34,7 +36,6 @@ const Catalog = () => {
         setActivePage(0);
         setGenre(genre);        
     }
-
     
     return (
         <>            
@@ -47,14 +48,27 @@ const Catalog = () => {
                 {
                     moviesResponse?.content.map(movie => (
                         <Link to={`/movie/${movie.id}`} key={movie.id} className="col-xl-2 col-lg-4 col-md-6 ">
-                            <Card />
+                            <Card movie={movie}/>
                         </Link>
                     ))
                 }              
             </div>
-            <div className="row d-flex justify-content-start-center">
-                <div className="col-xl-12">
-                    <Pagination totalPages={10} activePage={5} onChange={page => setActivePage(1)}/>
+            <div className="row d-flex justify-content-center">
+                <div className="col-xl-12">                    
+                    {moviesResponse && 
+                        <Pagination
+                            activePage={activePage}
+                            itemsCountPerPage={12}
+                            totalItemsCount={moviesResponse.totalElements}
+                            pageRangeDisplayed={5}
+                            onChange={page => setActivePage(page)}
+                            itemClass="pagination-item"
+                            activeClass="page-active"
+                            activeLinkClass="page-active-link"                            
+                            innerClass="pagination justify-content-center"
+                            hideDisabled={true}                            
+                        />
+                    }
                 </div>
             </div>
         </>

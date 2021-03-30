@@ -2,6 +2,7 @@
 export type MoviesResponse ={
     content: Movie[];
     totalPages: number;
+    totalElements: number;
 }
 
 export type Movie ={
