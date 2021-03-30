@@ -2,8 +2,7 @@ import "./styles.scss";
 import {ReactComponent as MovieImg} from '../../../core/assets/images/movie-img.svg'
 
 const Card = () => {
-    return (
-        <div className="col-xl-2 col-lg-4 col-md-6">
+    return (       
             <div className="card bd-radius-10 movie-card bg-secondary box-shadow">
                 <div className="card-body px-0">
                     <MovieImg className="img-fluid movie-img"/>
@@ -13,8 +12,7 @@ const Card = () => {
                         <p className="card-description">O olho do inimigo está se movendo.</p> 
                     </div>
                 </div>
-            </div>
-        </div>
+            </div>       
     )
 }
 
