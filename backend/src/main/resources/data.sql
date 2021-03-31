@@ -40,7 +40,7 @@ INSERT INTO tbl_reviews (text, movie_id, user_id) values ('Ri muito, super recom
 INSERT INTO tbl_reviews (text, movie_id, user_id) values ('Sou super fã dessa serie de filmes', 1, 2);
 INSERT INTO tbl_reviews (text, movie_id, user_id) values ('Esse filme é bom, só não gostei muito do final', 7, 2);
 
-INSERT INTO tbl_reviews (text, movie_id, user_id) values ('Até que é legal, dou nota 7', 10, 3);
+INSERT INTO tbl_reviews (text, movie_id, user_id) values ('Até que é legal, dou nota 7', 2, 3);
 INSERT INTO tbl_reviews (text, movie_id, user_id) values ('Achei muito legal, cheio de animações legais', 8, 3);
 INSERT INTO tbl_reviews (text, movie_id, user_id) values ('Muito fera !!! super recomendo !!', 6, 3);
 INSERT INTO tbl_reviews (text, movie_id, user_id) values ('Legal, esse filme me faz lembrar minha ex namorada ;(', 5, 3);

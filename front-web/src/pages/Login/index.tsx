@@ -1,5 +1,5 @@
 import './styles.scss';
-import {ReactComponent as LoginImg} from '../../core/assets/images/login.svg'
+import {ReactComponent as LoginImg} from '../../core/assets/images/login.svg';
 import {ReactComponent as ArrowIcon } from '../../core/assets/images/arrow.svg';
 import { useForm } from "react-hook-form";
 import { makeLogin } from '../../core/utils/request';

@@ -39,3 +39,21 @@
     padding: 10px 20px 10px 20px;
     margin-top: 10px;
 }
+
+.movie-detail-arrow-icon{
+    transform: rotate(-180deg);
+    
+}
+
+.movie-detail-arrow-text{
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 24px;  
+    letter-spacing: -0.015em;
+    color: #FFC700;
+  
+}
+
+.return-catalog{
+    cursor: pointer;
+}

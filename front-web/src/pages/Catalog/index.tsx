@@ -7,6 +7,7 @@ import Card from './Card'
 import SearchBar from './SearchBar';
 import './styles.scss'
 import Pagination from "react-js-pagination";
+import CardLoader from '../../core/loaders/CardLoader';
 
 
 const Catalog = () => {
@@ -44,8 +45,9 @@ const Catalog = () => {
                     <SearchBar handleChangeGenre={handleChangeGenre} />
                 </div>
             </div>
-            <div className="row movie-container d-flex justify-content-start px-lg-4 px-md-0">  
-                {
+            <div className="row movie-container d-flex justify-content-start px-lg-4 px-md-0"> 
+                {isLoading && <CardLoader />} 
+                {!isLoading &&
                     moviesResponse?.content.map(movie => (
                         <Link to={`/movie/${movie.id}`} key={movie.id} className="col-xl-2 col-lg-4 col-md-6 ">
                             <Card movie={movie}/>

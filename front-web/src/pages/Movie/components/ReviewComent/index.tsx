@@ -10,16 +10,17 @@ type FormComent ={
 
 type Props = {
     movieId: string;
+    onSave: Function;
 }
 
-const ReviewComent = ({ movieId }: Props) => {
+const ReviewComent = ({ movieId, onSave }: Props) => {
     const { register, handleSubmit} = useForm<FormComent>(); 
     
     const onSubmit = (data : FormComent) => {
-        data.movieId = Number(movieId);       
-        
+        data.movieId = Number(movieId); 
         makePrivateRequest({url: `/reviews`, method: "POST", data})
-        .then(() =>{            
+        .then(() =>{
+            onSave();       
             toast.success("Comentário salvo com sucesso!");      
         })
         .catch(() => {           
