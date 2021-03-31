@@ -70,7 +70,7 @@ const MovieDetails = () => {
                     </div>
                 </div>
                 {isAllowedByRole(['ROLE_MEMBER']) && <ReviewComent movieId={movieId} onSave={onSave}/>}
-                {reviews?.content.length!=0 &&
+                {reviews?.content.length!==0 &&
                     <div className="row mt-3 mb-5">                    
                         <div className="col-xl-12 p-0 align-items-center">
                             <div className="card bg-secondary bd-radius-10 box-shadow px-3 pb-4">
