@@ -27,7 +27,7 @@ const MovieDetails = () => {
 
 
     const onSave = () => {
-        setIsSaveReview(!true);
+        setIsSaveReview(!isSaveReview);
     };
 
     useEffect(() => {
