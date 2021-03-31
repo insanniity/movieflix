@@ -1,23 +1,25 @@
 
-import { useEffect, useState } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import { isAuthenticated, logout } from '../utils/auth';
 import './styles.scss'
 
 
 const NavBar = () => { 
-    const [isLogged, setIsLogged] = useState(false);
     const history = useHistory();
     const location = useLocation();
 
     useEffect(() => {
-        if(isAuthenticated()){
-            setIsLogged(true);
-        }else{
-            setIsLogged(false);
-        }       
+        isAuthenticated();     
     }, [location]);
 
+    const handleBrandClick = () => {
+        if(isAuthenticated()){
+            history.push("/catalog");            
+        }else{
+            history.push("/");
+        }
+    }
 
     const handleLogout = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         event.preventDefault();        
@@ -27,8 +29,8 @@ const NavBar = () => {
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-primary">
-            <div className="col-6 text-left"><Link className="navbar-brand" to="/">MovieFlix</Link></div>
-            {isLogged && (
+            <div className="col-6 text-left"><div className="navbar-brand" onClick={handleBrandClick}>MovieFlix</div></div>
+            {isAuthenticated() && (
                 <div className="col-6 text-right"><a href="#logout" className="btn btn-outline-dark" onClick={handleLogout}>Sair</a></div>
             )}   
         </nav>

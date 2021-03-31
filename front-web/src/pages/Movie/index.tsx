@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import DetailMovieLoader from '../../core/loaders/DetailMovieLoader';
-import { Movie, ReviewResponse } from '../../core/types';
-import { isAllowedByRole } from '../../core/utils/auth';
-import { makePrivateRequest } from '../../core/utils/request';
+import DetailMovieLoader from 'core/loaders/DetailMovieLoader';
+import { Movie, ReviewResponse } from 'core/types';
+import { isAllowedByRole } from 'core/utils/auth';
+import { makePrivateRequest } from 'core/utils/request';
 import ReviewUser from './components/Review';
 import ReviewComent from './components/ReviewComent/';
-import ComentsLoader from '../../core/loaders/ComentsLoader';
-import {ReactComponent as ArrowIcon } from '../../core/assets/images/arrow.svg';
+import ComentsLoader from 'core/loaders/ComentsLoader';
+import {ReactComponent as ArrowIcon } from 'core/assets/images/arrow.svg';
 import './styles.scss';
 
 
@@ -55,16 +55,16 @@ const MovieDetails = () => {
                             <div className="movie-detail-arrow-text text-primary ml-3">Voltar</div>
                         </div> 
                         <div className="row px-3 py-4 align-items-center">
-                            {isLoadingMovie && <DetailMovieLoader />}
-                            {!isLoadingMovie && <>
-                                <div className="col-xl-6 "><img src={movie?.imgUrl} alt={movie?.title} className="img-fluid movie-detail-img"/></div>
-                                <div className="col-xl-6">
-                                    <span className="movie-detail-title d-flex">{movie?.title}</span>                                
-                                    <span className="movie-detail-year d-flex">{movie?.year}</span>                                
-                                    <span className="movie-detail-subtitle d-flex">{movie?.subTitle ? movie.subTitle : (<br />)}</span>                                
-                                    <div className="movie-detail-synopse">{movie?.synopsis}</div>                                
-                                </div>
-                            </>
+                            {isLoadingMovie ? <DetailMovieLoader /> : 
+                                <>
+                                    <div className="col-xl-6 "><img src={movie?.imgUrl} alt={movie?.title} className="img-fluid movie-detail-img"/></div>
+                                    <div className="col-xl-6">
+                                        <span className="movie-detail-title d-flex">{movie?.title}</span>                                
+                                        <span className="movie-detail-year d-flex">{movie?.year}</span>                                
+                                        <span className="movie-detail-subtitle d-flex">{movie?.subTitle ? movie.subTitle : (<br />)}</span>                                
+                                        <div className="movie-detail-synopse">{movie?.synopsis}</div>                                
+                                    </div>
+                                </>
                             }
                         </div> 
                     </div>
@@ -74,8 +74,7 @@ const MovieDetails = () => {
                     <div className="row mt-3 mb-5">                    
                         <div className="col-xl-12 p-0 align-items-center">
                             <div className="card bg-secondary bd-radius-10 box-shadow px-3 pb-4">
-                                {isLoadingReviews && <ComentsLoader />}
-                                {!isLoadingReviews && reviews?.content.map(review => (<ReviewUser name={review.user.name} coment={review.text}/>)) }   
+                                {isLoadingReviews ? <ComentsLoader /> : reviews?.content.map(review => (<ReviewUser name={review.user.name} coment={review.text}/>)) }   
                             </div>
                         </div>
                     </div>

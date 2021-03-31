@@ -1,6 +1,6 @@
-import { useForm } from "react-hook-form";
+import { useForm} from "react-hook-form";
 import { toast } from "react-toastify";
-import { makePrivateRequest } from "../../../../core/utils/request";
+import { makePrivateRequest } from "core/utils/request";
 import "./styles.scss";
 
 type FormComent ={
@@ -14,14 +14,15 @@ type Props = {
 }
 
 const ReviewComent = ({ movieId, onSave }: Props) => {
-    const { register, handleSubmit} = useForm<FormComent>(); 
-    
+    const { register, handleSubmit, reset} = useForm<FormComent>({defaultValues:{text: ""}});   
+
     const onSubmit = (data : FormComent) => {
         data.movieId = Number(movieId); 
         makePrivateRequest({url: `/reviews`, method: "POST", data})
         .then(() =>{
             onSave();       
-            toast.success("Comentário salvo com sucesso!");      
+            toast.success("Comentário salvo com sucesso!");
+            reset();             
         })
         .catch(() => {           
             toast.error("Ocorreu um erro tente novamente mais tarde.");
@@ -40,6 +41,7 @@ const ReviewComent = ({ movieId, onSave }: Props) => {
                                 rows={3}
                                 name="text"
                                 ref={register({required: "Campo obrigatório"})}
+                                
                             />                                                                  
                         </div>                                                      
                         <div className="offset-xl-4 col-xl-4 text-center">                            

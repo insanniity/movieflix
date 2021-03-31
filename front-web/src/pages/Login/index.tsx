@@ -1,10 +1,10 @@
 import './styles.scss';
-import {ReactComponent as LoginImg} from '../../core/assets/images/login.svg';
-import {ReactComponent as ArrowIcon } from '../../core/assets/images/arrow.svg';
+import {ReactComponent as LoginImg} from 'core/assets/images/login.svg';
+import {ReactComponent as ArrowIcon } from 'core/assets/images/arrow.svg';
 import { useForm } from "react-hook-form";
-import { makeLogin } from '../../core/utils/request';
-import { useState } from 'react';
-import { saveSessionData } from '../../core/utils/auth';
+import { makeLogin } from 'core/utils/request';
+import {  useState } from 'react';
+import { saveSessionData } from 'core/utils/auth';
 import { useHistory, useLocation } from 'react-router-dom';
 
 type FormData ={
@@ -21,9 +21,8 @@ const Login = () => {
     const [hasError, setHasError] = useState(false);
     const history = useHistory();
     const location = useLocation<LocationState>();   
-    const { from } = location.state || { from: { pathname: "/catalog" } };
-
-    
+   
+    const { from } = location.state || { from: { pathname: "/catalog" } };    
 
     const onSubmit = (data : FormData) => {
         makeLogin(data)
@@ -32,7 +31,7 @@ const Login = () => {
             saveSessionData(response.data);
             history.push(from);
         })
-        .catch(() => {setHasError(true)});
+        .catch(() => {setHasError(true)}) ;       
     };
 
     return (

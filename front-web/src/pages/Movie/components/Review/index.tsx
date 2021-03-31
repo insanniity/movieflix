@@ -1,5 +1,5 @@
 import "./styles.scss";
-import {ReactComponent as Star} from "../../../../core/assets/images/star.svg"
+import {ReactComponent as Star} from "core/assets/images/star.svg"
 
 type Props ={
     name: string;

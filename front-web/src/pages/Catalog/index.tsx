@@ -1,13 +1,12 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-//import Pagination from '../../core/components/pagination'
-import { Genre, MoviesResponse } from '../../core/types';
-import { makePrivateRequest } from '../../core/utils/request';
+import { Genre, MoviesResponse } from 'core/types';
+import { makePrivateRequest } from 'core/utils/request';
 import Card from './Card'
 import SearchBar from './SearchBar';
 import './styles.scss'
 import Pagination from "react-js-pagination";
-import CardLoader from '../../core/loaders/CardLoader';
+import CardLoader from 'core/loaders/CardLoader';
 
 
 const Catalog = () => {
@@ -46,8 +45,7 @@ const Catalog = () => {
                 </div>
             </div>
             <div className="row movie-container d-flex justify-content-start px-lg-4 px-md-0"> 
-                {isLoading && <CardLoader />} 
-                {!isLoading &&
+                {isLoading ? <CardLoader /> : 
                     moviesResponse?.content.map(movie => (
                         <Link to={`/movie/${movie.id}`} key={movie.id} className="col-xl-2 col-lg-4 col-md-6 ">
                             <Card movie={movie}/>

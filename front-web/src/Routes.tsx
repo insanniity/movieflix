@@ -1,13 +1,18 @@
-import { BrowserRouter, Switch , Route, Redirect} from 'react-router-dom';
+import { BrowserRouter, Switch , Route, Redirect } from 'react-router-dom';
 import NavBar from './core/components/navbar';
 import PrivateRoute from './core/components/privateroute';
 import Catalog from './pages/Catalog';
 import Login from './pages/Login';
 import MovieDetails from './pages/Movie';
 import { isAuthenticated } from './core/utils/auth';
-import React from 'react';
+import { useEffect } from 'react';
 
 const Routes = () => {
+    
+    useEffect(() => {
+        isAuthenticated();     
+    }, []);
+
     return (
         <BrowserRouter>
             <NavBar />

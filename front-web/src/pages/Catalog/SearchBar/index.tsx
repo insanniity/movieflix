@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Select from 'react-select';
-import { Genre } from "../../../core/types";
-import { makePrivateRequest } from "../../../core/utils/request";
+import { Genre } from "core/types";
+import { makePrivateRequest } from "core/utils/request";
 import './styles.scss';
 
 type Props = {    
