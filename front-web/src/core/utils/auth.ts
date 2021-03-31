@@ -10,7 +10,7 @@ type LoginRepsonse={
     expires_in: number,
     scope: string,
     userName: string,
-    userId: number
+    userId: number,
 }
 
 export type Role = 'ROLE_VISITOR' | 'ROLE_MEMBER';
@@ -28,7 +28,6 @@ export const saveSessionData = (loginResponse: LoginRepsonse) => {
 export const getSessionData = () =>{
     const sessionData = localStorage.getItem('authData') ?? '{}';
     const parsedSessionData = JSON.parse(sessionData);
-
     return parsedSessionData as LoginRepsonse;
 }
 

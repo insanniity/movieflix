@@ -3,7 +3,7 @@ import NavBar from './core/components/navbar';
 import PrivateRoute from './core/components/privateroute';
 import Catalog from './pages/Catalog';
 import Login from './pages/Login';
-import Movie from './pages/Movie';
+import MovieDetails from './pages/Movie';
 import { isAuthenticated } from './core/utils/auth';
 import React from 'react';
 
@@ -19,8 +19,11 @@ const Routes = () => {
                     <PrivateRoute path="/catalog">
                         <Catalog />
                     </PrivateRoute>
-                    <PrivateRoute path="/movie">
-                        <Movie />
+                    <Route path="/movie" exact>
+                        <Redirect to="/catalog" />
+                    </Route>
+                    <PrivateRoute path="/movie/:movieId">
+                        <MovieDetails />
                     </PrivateRoute>
                 </Switch>
             </div>

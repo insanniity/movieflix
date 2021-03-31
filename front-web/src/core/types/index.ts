@@ -13,10 +13,15 @@ export type Movie ={
     imgUrl: string;
     synopsis: string;
     genreId: number;
-    reviews?: Reviews[];
 }
 
-export type Reviews={
+export type ReviewResponse = {
+    content : Review[];
+    totalPages: number;
+    totalElements: number;
+}
+
+export type Review={
     id: number;
     text: string;
     movieId: number;

@@ -23,7 +23,7 @@ const SearchBar = ({genre , handleChangeGenre }:Props) => {
 
     return (
         <div className="card bg-secondary bd-radius-10 box-shadow">
-            <div className="card-body py-1">
+            <div className="card-body py-2">
                 <div className="input-group">
                     <Select                                                                      
                         name="genres"
