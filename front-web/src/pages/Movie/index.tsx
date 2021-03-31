@@ -16,21 +16,24 @@ const MovieDetails = () => {
     const { movieId } = useParams<ParamsType>();
     const [movie, setMovie ] = useState<Movie>();
     const [reviews, setReviews] = useState<ReviewResponse>();
-    const [isLoading, setIsLoading] = useState(false); 
+    const [isLoadingMovie, setIsLoadingMovie] = useState(false); 
+    const [isLoadingReviews, setIsLoadingReviews] = useState(false); 
 
     useEffect(() => {
-        setIsLoading(true);
-        const params = {movieId};
-
+        setIsLoadingMovie(true);       
         makePrivateRequest({url: `/movies/${movieId}`})
-        .then(response => setMovie(response.data));     
+        .then(response => setMovie(response.data))
+        .finally(() => setIsLoadingMovie(false));  
+    }, [movieId]);
 
+
+    useEffect(() => {
+        const params = {movieId};
+        setIsLoadingReviews(true);    
         makePrivateRequest({url: `/reviews`, params})
         .then(response => setReviews(response.data))
-        .finally(() => setIsLoading(false));
-
-
-    }, [movieId]);
+        .finally(() => setIsLoadingReviews(false));
+    }, [movieId, reviews]);
 
     return (
         <div className="container" >           
@@ -51,9 +54,7 @@ const MovieDetails = () => {
                 <div className="row mt-3">
                     <div className="col-xl-12 p-0 align-items-center">
                         <div className="card bg-secondary bd-radius-10 box-shadow px-3 pb-4">
-                            {
-                                reviews?.content.map(review => (<ReviewUser name={review.user.name} coment={review.text}/>))
-                            }   
+                            { reviews?.content.map(review => (<ReviewUser name={review.user.name} coment={review.text}/>)) }   
                         </div>
                     </div>
                 </div>
