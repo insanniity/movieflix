@@ -41,8 +41,9 @@ public class ReviewService implements Serializable{
 	private AuthService authService;
 	
 	@Transactional(readOnly = true)
-	public Page<ReviewDTO> findAllPaged(PageRequest pageRequest){
-		Page<Review> list = repository.findAll(pageRequest);		
+	public Page<ReviewDTO> findAllPaged(PageRequest pageRequest, Long movieId){
+		Movie movie = (movieId == 0) ? null : movieRepository.getOne(movieId);
+		Page<Review> list = repository.find(movie, pageRequest);		
 		return list.map(x -> new ReviewDTO(x));		
 		
 	}

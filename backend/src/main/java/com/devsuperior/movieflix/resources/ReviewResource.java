@@ -32,12 +32,13 @@ public class ReviewResource {
 	@GetMapping
 	public ResponseEntity<Page<ReviewDTO>> findAllPaged(			
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
+			@RequestParam(value = "movieId", defaultValue = "0") Long movieId,
 			@RequestParam(value = "linesPerPage", defaultValue = "10") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
 			@RequestParam(value = "direction", defaultValue = "DESC") String direction
 		){
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);		
-		Page<ReviewDTO> list = service.findAllPaged(pageRequest);		
+		Page<ReviewDTO> list = service.findAllPaged(pageRequest, movieId);		
 		return ResponseEntity.ok().body(list);		
 	}	
 	
