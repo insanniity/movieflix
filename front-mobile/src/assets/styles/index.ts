@@ -136,19 +136,33 @@ const login = StyleSheet.create({
         textTransform: 'uppercase',
     },
     txtInput:{
-        width: '100%',
+        width: 330,
         height: 50,
-        borderRadius: 10,
+        borderWidth: 1,
         backgroundColor: colors.white,
-        fontSize: 16,
-        marginTop: 30,
-        padding:15, 
+        borderRadius: 10,
+        padding: 10, 
+        marginTop: 35,
     },
     formContainer:{
-        width: "100%",
+        width: '100%',
     },
     buttonContainer:{
         marginTop: 35, 
+    },
+    passwordContainer:{
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: '100%',         
+    },
+    eyes:{
+        width: 35,
+        height: 40,        
+    },
+    toggle:{
+        
+        marginLeft: -50, 
+        marginTop: 35,      
     },
 });
 
