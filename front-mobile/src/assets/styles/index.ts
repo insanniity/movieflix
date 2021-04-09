@@ -55,7 +55,7 @@ const theme = StyleSheet.create({
         alignItems: 'center',
         position: 'absolute',
         right: 0,
-    }    
+    },      
 });
 
 
@@ -82,10 +82,44 @@ const home = StyleSheet.create({
         color: colors.white,
     },
     buttonContainer:{},    
-})
+});
+
+const nav = StyleSheet.create({
+    leftContainer:{
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 20,
+    },
+    leftImg:{
+
+    },
+    leftText: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        lineHeight: 25,
+        marginLeft: 10,       
+    },
+    rightText: { 
+        fontWeight: 'bold',
+        fontSize: 14,
+        lineHeight: 19,
+        textAlign: 'center',
+        color: colors.black,
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: colors.black,
+        borderRadius: 10,
+        marginRight: 20,
+        paddingVertical: 5,
+        paddingHorizontal: 25,
+        textTransform: 'uppercase',
+    },
+});
 
 
-export {colors, theme, home};
+export {colors, theme, home, nav};
 
 /*
 shadow: {

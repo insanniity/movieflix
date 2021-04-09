@@ -1,9 +1,10 @@
 import React from 'react';
 import {Text, View } from 'react-native';
+import { theme } from '../assets/styles';
 
 const Login : React.FC = () => {
     return (
-        <View>
+        <View style={theme.container}>
             <Text>
                 Login
             </Text>
