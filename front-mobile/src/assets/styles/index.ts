@@ -119,7 +119,41 @@ const nav = StyleSheet.create({
 });
 
 
-export {colors, theme, home, nav};
+const login = StyleSheet.create({
+    card:{
+        width: '100%',
+        height: '100%',         
+        alignItems: 'center',
+        paddingHorizontal: 20,       
+    },
+    title:{
+        fontWeight:'normal',
+        fontSize: 30,
+        lineHeight: 40,
+        marginTop: 100,
+        textAlign: 'center',
+        color: colors.white,
+        textTransform: 'uppercase',
+    },
+    txtInput:{
+        width: '100%',
+        height: 50,
+        borderRadius: 10,
+        backgroundColor: colors.white,
+        fontSize: 16,
+        marginTop: 30,
+        padding:15, 
+    },
+    formContainer:{
+        width: "100%",
+    },
+    buttonContainer:{
+        marginTop: 35, 
+    },
+});
+
+
+export {colors, theme, home, nav, login};
 
 /*
 shadow: {
