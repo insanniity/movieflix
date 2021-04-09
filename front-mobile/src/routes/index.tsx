@@ -1,9 +1,9 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Home, Login, Movies, MovieDetail} from '../pages';
-import { colors, nav, theme} from '../assets/styles';
-import {View, Text , Image} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { colors, nav} from '../assets/styles';
+import {View, Text , Image, TouchableOpacity} from 'react-native';
+
 import arrow from '../assets/img/back-arrow.png';
 
 const Stack = createStackNavigator();
