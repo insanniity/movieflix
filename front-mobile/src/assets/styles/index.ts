@@ -7,7 +7,7 @@ const colors = {
     gray: "#525252",
     white: "#FEFEFE",
     mediumGray: "#6C6C6C",
-    lightGray: "#CDCDCD%",
+    lightGray: "#CDCDCD",
     black: "#000000"
 }
 
@@ -55,6 +55,32 @@ const theme = StyleSheet.create({
         alignItems: 'center',
         position: 'absolute',
         right: 0,
+    },
+    inputContainer:{
+        width: '100%',
+        height: 80,
+        backgroundColor: colors.mediumGray,
+        borderRadius: 10,
+        shadowColor: colors.black,
+        shadowOffset:{
+            width:0,
+            height:2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 15,        
+        //elevation: 5,
+    },
+    inputSearch:{
+        width: '90%',
+        height:50,
+        borderWidth: 1,
+        borderColor: colors.white,
+        borderRadius: 10,
+        color: colors.white,
+        padding: 12,
     },      
 });
 
@@ -84,6 +110,7 @@ const home = StyleSheet.create({
     buttonContainer:{},    
 });
 
+//NavBar
 const nav = StyleSheet.create({
     leftContainer:{
         flex: 1,
@@ -118,7 +145,7 @@ const nav = StyleSheet.create({
     },
 });
 
-
+// Login Page
 const login = StyleSheet.create({
     card:{
         width: '100%',
@@ -166,8 +193,82 @@ const login = StyleSheet.create({
     },
 });
 
+//Movies Page
+const moviesPage = StyleSheet.create({
+    container:{
+        width: "100%",                
+        backgroundColor: colors.gray,
+        padding: 20,
+    },
 
-export {colors, theme, home, nav, login};
+});
+
+
+//Movie Card
+const movieCard = StyleSheet.create({
+    card:{
+        width: '100%',
+        height: 405,
+        marginTop:20,                      
+        backgroundColor: colors.mediumGray,
+        paddingTop: 20,
+        shadowColor: colors.black,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        borderRadius: 10,
+    },
+    cardImage:{
+        width: '100%',
+        height: 230,
+    },
+    textContainer:{
+        paddingHorizontal: 20,
+    },
+    cardTitle:{
+        marginTop: 20,
+        fontWeight: 'bold',
+        fontSize: 18,
+        lineHeight: 25,
+        color: colors.white,
+    },
+    cardYear:{
+        color: colors.yellow,
+        fontWeight: 'bold',
+        fontSize: 14,
+        lineHeight: 19,
+    },
+    cardSubTitle:{
+        marginTop: 5,
+        color: colors.lightGray,
+        fontWeight: 'normal',
+        fontSize: 16,
+        lineHeight: 22,
+    },
+    viewDetailButton:{
+        width: '100%',
+        height: 40,
+        borderWidth: 1,
+        borderColor: colors.white,
+        borderRadius: 10, 
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 10,      
+    },
+    viewDetailButtonText:{
+        color: colors.white,
+        fontWeight: 'bold',
+        fontSize: 14,
+        lineHeight: 19,
+        textAlign: 'center',
+    }
+});
+
+
+export {colors, theme, home, nav, login, moviesPage , movieCard}
 
 /*
 shadow: {
