@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import {Text, View, ScrollView } from 'react-native';
-import { theme, moviesPage } from '../assets/styles';
+import { ScrollView } from 'react-native';
+import { moviesPage } from '../assets/styles';
 import MovieCard from './components/MovieCard';
 import SearchInput from './components/SearchInput';
 

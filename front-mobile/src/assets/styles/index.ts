@@ -7,7 +7,7 @@ const colors = {
     gray: "#525252",
     white: "#FEFEFE",
     mediumGray: "#6C6C6C",
-    lightGray: "#CDCDCD",
+    lightGray: "#9E9E9E",
     black: "#000000"
 }
 
@@ -198,9 +198,8 @@ const moviesPage = StyleSheet.create({
     container:{
         width: "100%",                
         backgroundColor: colors.gray,
-        padding: 20,
+        padding: 20,        
     },
-
 });
 
 
@@ -268,7 +267,129 @@ const movieCard = StyleSheet.create({
 });
 
 
-export {colors, theme, home, nav, login, moviesPage , movieCard}
+//Movie Details
+const movieDetail = StyleSheet.create({
+    card:{
+        width: '100%',        
+        marginTop:20,                      
+        backgroundColor: colors.mediumGray,
+        paddingVertical: 20,
+        shadowColor: colors.black,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        borderRadius: 10,
+    },
+    title:{
+        fontWeight: 'bold',
+        fontSize: 24,
+        lineHeight: 35,
+        marginBottom: 15,
+        paddingHorizontal: 25,
+        color: colors.white,
+    },
+    txtContainer:{
+        paddingHorizontal: 25,
+        marginTop: 15,
+    },
+    year: {
+        color: colors.yellow,
+        fontWeight: 'bold',
+        fontSize: 24,
+        lineHeight: 33,
+    },
+    subtitle:{
+        color: colors.lightGray,
+        fontWeight: 'normal',
+        fontSize: 18,
+        lineHeight: 25,
+    },
+    descriptionTitle:{
+        color: colors.white,
+        fontWeight: 'bold',
+        fontSize: 22,
+        lineHeight: 30,
+        marginTop: 15,
+    },
+    description:{
+        borderWidth: 1,
+        borderColor: colors.lightGray,
+        borderRadius: 20,
+        padding: 15,
+        color: colors.lightGray,
+        fontSize: 16,
+        lineHeight: 22,
+        marginTop: 10,
+    },
+    avaliation:{
+        paddingVertical: 15,
+        paddingHorizontal: 20,       
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    txtArea:{
+        width: '100%',
+        height: 100,
+        paddingHorizontal: 15,
+        paddingVertical: 10,
+        backgroundColor: colors.white,
+        borderRadius: 10,
+        color: colors.lightGray,
+        marginBottom: 15,
+        fontSize: 16,
+        lineHeight: 22,       
+    },
+    avaliationsContainer:{
+        paddingHorizontal: 20,
+    },
+    avaliationsTitle:{
+        color: colors.white,
+        fontWeight: 'bold',
+        fontSize: 22,
+        lineHeight: 30,
+        marginBottom: 15,
+    },
+    userAvaliation:{
+        width: '100%',
+        marginBottom: 20,
+    },
+    userAvaliationNameContainer:{
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    userStar:{
+        marginLeft: 15,
+        marginRight: 15,
+    },
+    userAvaliationName:{
+        color: colors.white,
+        fontWeight: 'bold',
+        fontSize: 16,
+        lineHeight: 27,        
+    },
+    userAvaliationComent:{
+        color: colors.lightGray,
+        fontWeight: 'normal',
+        fontSize: 16,
+        lineHeight: 22,
+        textAlign: 'justify',
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        borderWidth: 1,
+        borderRadius: 20,
+        borderColor: colors.white,
+        marginTop: 5, 
+    },
+    
+});
+
+
+
+
+export {colors, theme, home, nav, login, moviesPage , movieCard, movieDetail}
 
 /*
 shadow: {
