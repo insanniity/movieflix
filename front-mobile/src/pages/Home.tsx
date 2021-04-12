@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {Text, View, Image } from 'react-native';
 import { theme, home } from '../assets/styles';
 import homeImage from '../assets/img/home-image.png';
 import Button from './components/Button';
 import { useNavigation } from '@react-navigation/native';
-
-
+import { isAuthenticated } from '../services/auth';
 
 const Home : React.FC = () => {
-    const navigation = useNavigation();
+    const navigation = useNavigation(); 
+    const [authenticated, setAuthenticated] = useState(false);   
+
+    async function authSync() {
+        setAuthenticated(await isAuthenticated());
+    }
+
+    useEffect(() => {
+        authSync();
+    }, []); 
+
     return (
         <View style={theme.container}>
             <View style={theme.card}>
@@ -20,7 +29,7 @@ const Home : React.FC = () => {
                     <Text style={home.subtitle}>Diga o que você achou do seu {"\n"} filme favorito</Text>
                 </View>
                 <View style={home.buttonContainer}>
-                    <Button text="FAZER LOGIN" action={() => navigation.navigate('Login')} icon={true}/>
+                    <Button text={authenticated ? "ACESSAR LISTA" : "FAZER LOGIN"} action={() => {authenticated ? navigation.navigate('Movies') : navigation.navigate('Login')}} icon={true}/>
                 </View>
             </View>
         </View>

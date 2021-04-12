@@ -1,8 +1,7 @@
 import React from 'react';
-import {Text, ScrollView, View, Image, TextInput } from 'react-native';
+import {Text, ScrollView, View, Image } from 'react-native';
 import { moviesPage, movieDetail, movieCard } from '../assets/styles';
 import movieImg from '../assets/img/movie-img.png';
-import starImg from '../assets/img/star.png';
 import Avaliation from './components/Avaliation';
 import UserAvaliation from './components/UserAvaliation';
 
