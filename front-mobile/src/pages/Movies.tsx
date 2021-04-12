@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView } from 'react-native';
+import { ActivityIndicator, ScrollView } from 'react-native';
 import { moviesPage } from '../assets/styles';
+import { getMovies } from '../services';
 import MovieCard from './components/MovieCard';
 import SearchInput from './components/SearchInput';
+
+
 
 const Movie : React.FC = () => {
     const [search, setSearch] = useState("");
@@ -11,8 +14,8 @@ const Movie : React.FC = () => {
 
     async function fillMovies(){
         setLoad(true);
-        //const res = await api.get(`products`);
-        //setMovies(res.data.content);
+        const res = await getMovies();
+        setMovies(res.data.content);
         setLoad(false);
     }
 
@@ -24,11 +27,9 @@ const Movie : React.FC = () => {
     return (
         <ScrollView contentContainerStyle={moviesPage.container}>            
             <SearchInput placeholder="Nome do filme" search={search} setSearch={setSearch}/>
-            <MovieCard />
-            <MovieCard /> 
-            <MovieCard /> 
-            <MovieCard /> 
-            <MovieCard />             
+            {   load ? (<ActivityIndicator size="large"/>) :
+                (movies.map(movie =>(<MovieCard {...movie} key={movie.id}/>)))
+            }                           
         </ScrollView>
     )
 }
