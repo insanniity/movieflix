@@ -3,14 +3,23 @@ import {View , Image, Text} from 'react-native';
 import { movieDetail } from '../../assets/styles';
 import starImg from '../../assets/img/star.png';
 
-const Avaliation : React.FC = () => {
+interface User{    
+    name: string,
+}
+
+interface Reviews{     
+    text: string,
+    user: User,    
+}
+
+const Avaliation = ({text, user}:Reviews) => {
     return (
         <View style={movieDetail.userAvaliation}>
             <View style={movieDetail.userAvaliationNameContainer}>
                 <Image source={starImg} style={movieDetail.userStar} />
-                <Text style={movieDetail.userAvaliationName}>Maria Silva</Text>
+                <Text style={movieDetail.userAvaliationName}>{user.name}</Text>
             </View>
-            <Text style={movieDetail.userAvaliationComent}>Gostei muito do filme. Foi muito bom mesmo. Pena que durou pouco.</Text>
+            <Text style={movieDetail.userAvaliationComent}>{text}</Text>
         </View>
     );
 }
