@@ -1,7 +1,6 @@
 import React from 'react';
-import {Text, View , Image, TouchableOpacity, ImageSourcePropType} from 'react-native';
+import {Text, View , Image, TouchableOpacity} from 'react-native';
 import { movieCard } from '../../assets/styles';
-import movieImg from '../../assets/img/movie-img.png';
 import { useNavigation } from '@react-navigation/native';
 
 interface MovieProps{

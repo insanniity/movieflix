@@ -5,11 +5,18 @@ import { getMovies } from '../services';
 import MovieCard from './components/MovieCard';
 import SearchInput from './components/SearchInput';
 
+interface MoviesProps{
+    id: number;
+    title: string;
+    subTitle: string;
+    year: number;
+    imgUrl: string;
+}
 
 
 const Movie : React.FC = () => {
     const [search, setSearch] = useState("");
-    const [movies, setMovies] = useState([]);
+    const [movies, setMovies] = useState<MoviesProps[]>([]);
     const [load, setLoad] = useState(false);
 
     async function fillMovies(){
