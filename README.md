@@ -28,7 +28,7 @@ senha: 123456
 
 ### Instalação
 
-Required Node.js
+Required Node.js e Node Sass
 
 ```bash
 npm install
