@@ -4,6 +4,7 @@ import { moviesPage, movieDetail, movieCard } from '../assets/styles';
 import Avaliation from './components/Avaliation';
 import UserAvaliation from './components/UserAvaliation';
 import { getMovie, getReviews } from '../services';
+import { isAllowedByRole } from '../services/auth';
 
 interface User{
     name: string,
@@ -29,9 +30,19 @@ const MovieDetail = ({route:{params:{id}}}:any) => {
     });
 
     const [reviews, setReviews] = useState<Reviews[]>([]);
-
     const [loadMovie, setLoadMovie] = useState(false);
     const [loadReviews, setLoadReviews] = useState(false);
+    const [allowComent, setAllowComent] = useState(false);
+
+    const [updateComents, setUpdateComents] = useState(false);
+
+    function updateReviews(){
+        setUpdateComents(!updateComents);
+    }
+    
+    async function verifyPemission() {
+        setAllowComent(await isAllowedByRole(['ROLE_MEMBER']));
+    }
 
     async function loadMovieData() {
         setLoadMovie(true);
@@ -49,9 +60,11 @@ const MovieDetail = ({route:{params:{id}}}:any) => {
 
 
     useEffect(()=> {
-        loadMovieData();
-        loadReviewData();
+        loadMovieData();        
+        verifyPemission()
     }, []);
+
+    useEffect(() => {loadReviewData();}, [updateComents]);
 
     return (
         <ScrollView contentContainerStyle={moviesPage.container}>
@@ -76,7 +89,7 @@ const MovieDetail = ({route:{params:{id}}}:any) => {
                         </Text>
                     </View>                
                 </View>
-                <Avaliation />
+                {allowComent && <Avaliation movieId={id} updateReviews={updateReviews}/>}                
                 {loadReviews ?  (<ActivityIndicator size="large" />) : 
                     <View style={movieDetail.card}>
                         <View style={movieDetail.avaliationsContainer}>

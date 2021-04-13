@@ -47,3 +47,13 @@ export async function getReviews(moviedId:number){
     });
     return res;
 }
+
+export async function saveNewReview(data: object) {
+    const aToken = await userToken();    
+    const res = api.post(`reviews`, data , {
+        headers:{
+            Authorization: `Bearer ${aToken}`,
+        }
+    });
+    return res;
+}

@@ -2,10 +2,19 @@ import React from 'react';
 import queryString from 'query-string';
 import { api, TOKEN } from '.';
 import AsyncStorage from '@react-native-community/async-storage';
+import jwtDecode from 'jwt-decode';
 
 interface AuthProps {
     username: string;
     password: string;
+}
+
+type Role = 'ROLE_MEMBER' | 'ROLE_VISITOR';
+
+type AccessToken = {
+    exp:number,
+    user_name:string,
+    authorities: Role[], 
 }
 
 export async function authLogin (userInfo:AuthProps){
@@ -17,7 +26,7 @@ export async function authLogin (userInfo:AuthProps){
         },       
     });
     const {access_token} = result.data;
-    setAsyncKeys("@token", access_token);    
+    setAsyncKeys("@token", access_token);
     return result;
     
 }
@@ -39,8 +48,28 @@ export async function isAuthenticated(){
 
 export async function doLogout(){
     try{
-        await AsyncStorage.removeItem('@token'); 
+        await AsyncStorage.removeItem('@token');      
     }catch(e){
         console.log(e);
+    }
+}
+
+export async function isAllowedByRole (routeRoles: Role[] = []) {    
+    if(routeRoles.length === 0){ return false}
+    const { authorities } = await getAccessTokenDecoded();
+    return routeRoles.some(role => authorities?.includes(role));
+}
+
+
+export async function getAccessTokenDecoded<AccessToken>() {
+    const token = await AsyncStorage.getItem("@token"); 
+    try{
+        if(token){
+            const tokenDecode = jwtDecode(token);
+            return tokenDecode as AccessToken;
+        }
+        return {} as AccessToken;
+    }catch(error){
+        return {} as AccessToken;
     }
 }
