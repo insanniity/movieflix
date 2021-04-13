@@ -4,7 +4,8 @@ import { moviesPage, movieDetail, movieCard } from '../assets/styles';
 import Avaliation from './components/Avaliation';
 import UserAvaliation from './components/UserAvaliation';
 import { getMovie, getReviews } from '../services';
-import { isAllowedByRole } from '../services/auth';
+import { isAllowedByRole, isAuthenticated } from '../services/auth';
+import { useNavigation } from '@react-navigation/native';
 
 interface User{
     name: string,
@@ -35,6 +36,20 @@ const MovieDetail = ({route:{params:{id}}}:any) => {
     const [allowComent, setAllowComent] = useState(false);
 
     const [updateComents, setUpdateComents] = useState(false);
+
+    const navigation = useNavigation();
+    const [authenticated, setAuthenticated] = useState(true);
+
+    async function authSync() {
+        setAuthenticated(await isAuthenticated());
+    }
+    
+    useEffect(() => {        
+        authSync();
+        if(!authenticated){                   
+            navigation.navigate("Login");
+        }
+    }, []); 
 
     function updateReviews(){
         setUpdateComents(!updateComents);
@@ -67,43 +82,45 @@ const MovieDetail = ({route:{params:{id}}}:any) => {
     useEffect(() => {loadReviewData();}, [updateComents]);
 
     return (
-        <ScrollView contentContainerStyle={moviesPage.container}>
-            {loadMovie ? (<ActivityIndicator size="large" />) : (<>
-                <View style={movieDetail.card}>
-                    <Text style={movieDetail.title}>
-                        {movie.title}
-                    </Text>
-                    <Image source={{uri: String(movie.imgUrl)}} style={movieCard.cardImage}/>
-                    <View style={movieDetail.txtContainer}>
-                        <Text style={movieDetail.year}>
-                            {movie.year}
-                        </Text>
-                        <Text style={movieDetail.subtitle}>
-                            {movie.subTitle}
-                        </Text>
-                        <Text style={movieDetail.descriptionTitle}>
-                            Sinopse
-                        </Text>
-                        <Text style={movieDetail.description}>
-                            {movie.synopsis}
-                        </Text>
-                    </View>                
-                </View>
-                {allowComent && <Avaliation movieId={id} updateReviews={updateReviews}/>}                
-                {loadReviews ?  (<ActivityIndicator size="large" />) : 
+        <View style={moviesPage.page}>
+            <ScrollView contentContainerStyle={moviesPage.container}>
+                {loadMovie ? (<ActivityIndicator size="large" />) : (<>
                     <View style={movieDetail.card}>
-                        <View style={movieDetail.avaliationsContainer}>
-                            <Text style={movieDetail.avaliationsTitle}>
-                                Avaliações
+                        <Text style={movieDetail.title}>
+                            {movie.title}
+                        </Text>
+                        <Image source={{uri: String(movie.imgUrl)}} style={movieCard.cardImage}/>
+                        <View style={movieDetail.txtContainer}>
+                            <Text style={movieDetail.year}>
+                                {movie.year}
                             </Text>
-                            {   
-                                reviews.map(review =>(<UserAvaliation {...review} key={review.id}/>))
-                            } 
-                        </View>
+                            <Text style={movieDetail.subtitle}>
+                                {movie.subTitle}
+                            </Text>
+                            <Text style={movieDetail.descriptionTitle}>
+                                Sinopse
+                            </Text>
+                            <Text style={movieDetail.description}>
+                                {movie.synopsis}
+                            </Text>
+                        </View>                
                     </View>
-                }
-            </>)}
-        </ScrollView>
+                    {allowComent && <Avaliation movieId={id} updateReviews={updateReviews}/>}                
+                    {loadReviews ?  (<ActivityIndicator size="large" />) : 
+                        <View style={movieDetail.card}>
+                            <View style={movieDetail.avaliationsContainer}>
+                                <Text style={movieDetail.avaliationsTitle}>
+                                    Avaliações
+                                </Text>
+                                {   
+                                    reviews.map(review =>(<UserAvaliation {...review} key={review.id}/>))
+                                } 
+                            </View>
+                        </View>
+                    }
+                </>)}
+            </ScrollView>
+        </View>
     )
 }
 

@@ -1,4 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+
+const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
 
 //Colors
 const colors = {
@@ -81,7 +84,45 @@ const theme = StyleSheet.create({
         borderRadius: 10,
         color: colors.white,
         padding: 12,
-    },      
+    },
+    inputSearchText:{
+        color: colors.white,       
+    },        
+    modalContainer:{
+        width:deviceWidth,
+        height: deviceHeight,
+        backgroundColor: "#00000033",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    modalContent:{
+        width:300,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: "50%",
+        backgroundColor: colors.mediumGray,
+        borderRadius: 10,
+        padding: 20,
+        shadowOffset:{
+            width:0,
+            height:2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+    modlaItem:{
+        width: "100%",        
+        padding: 10,
+        marginVertical: 5,
+        borderRadius: 5,
+        color: colors.white,
+        borderWidth:1,
+        borderColor: colors.white,
+    },
+    modlaItemText:{
+        color: colors.white,
+    }
 });
 
 
@@ -195,8 +236,13 @@ const login = StyleSheet.create({
 
 //Movies Page
 const moviesPage = StyleSheet.create({
+    page:{
+        width: deviceWidth,
+        height: '100%',
+        backgroundColor: colors.gray,         
+    },
     container:{
-        width: "100%",                
+        width: "100%",                       
         backgroundColor: colors.gray,
         padding: 20,        
     },

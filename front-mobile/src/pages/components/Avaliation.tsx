@@ -10,7 +10,8 @@ interface AvaliationProps{
 }
 
 const Avaliation : React.FC<AvaliationProps> = ({movieId, updateReviews}) => {
-    const [coment, setComent] = useState({text: "", movieId: movieId});
+    const [coment, setComent] = useState({text: "", movieId});
+    const blankComent = {text: "", movieId}
 
     async function handleSave(){
         if(coment.text){
@@ -24,6 +25,7 @@ const Avaliation : React.FC<AvaliationProps> = ({movieId, updateReviews}) => {
                       {text: "OK"}
                     ]
                 );
+                setComent(blankComent);                
             }else{
                 Alert.alert(
                     "Erro!",

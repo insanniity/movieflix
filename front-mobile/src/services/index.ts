@@ -17,9 +17,9 @@ export const api = axios.create({
 })
 
 
-export async function getMovies(){
+export async function getMovies(genreId:number){
     const aToken = await userToken();
-    const res = api.get(`movies`, {
+    const res = api.get(`movies?genreId=${genreId}`, {
         headers:{
             Authorization: `Bearer ${aToken}`,
         }
@@ -51,6 +51,16 @@ export async function getReviews(moviedId:number){
 export async function saveNewReview(data: object) {
     const aToken = await userToken();    
     const res = api.post(`reviews`, data , {
+        headers:{
+            Authorization: `Bearer ${aToken}`,
+        }
+    });
+    return res;
+}
+
+export async function getGenres(){
+    const aToken = await userToken();
+    const res = api.get(`genres`, {
         headers:{
             Authorization: `Bearer ${aToken}`,
         }
