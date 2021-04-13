@@ -12,11 +12,22 @@ const Stack = createStackNavigator();
 
 
 const HeaderText: React.FC = () => {
+    const navigation = useNavigation();
+    
+    function handleBack(){
+        navigation.goBack();
+    }
+
     return(
-        <View style={nav.leftContainer}>  
-            <Image source={arrow} style={nav.leftImg}/>
-            <Text style={nav.leftText}>MovieFlix</Text>
-        </View>
+            <View style={nav.leftContainer}> 
+                {navigation.canGoBack() && 
+                    <TouchableOpacity  activeOpacity={0.8} onPress={handleBack}>  
+                        <Image source={arrow} style={nav.leftImg}/>
+                    </TouchableOpacity> 
+                }
+                <Text style={nav.leftText}>MovieFlix</Text>
+            </View>
+        
     );
 }
 
